@@ -44,14 +44,23 @@ def add_supply_to_memorial_day(holiday_hash, supply)
 
 end
 
-def add_new_holiday_with_supplies(holiday_hash, season, holiday_name, supply_array)
-  # code here
-  # remember to return the updated hash
-  
-
-  holiday_hash[season][holiday_name] = supply_array
-  holiday_hash
-
+def all_supplies_in_holidays(holiday_hash)
+  # iterate through holiday_hash and print items such that your readout resembles:
+  # Winter:
+  #   Christmas: Lights, Wreath
+  #   New Years: Party Hats
+  # Summer:
+  #   Fourth Of July: Fireworks, BBQ
+  # etc.
+  holiday_hash.each do |season, holiday|
+    puts season.to_s.capitalize + ':'
+    holiday.each do |name_symbol, supplies|
+      name_array = name_symbol.to_s.split("_")
+      name_strings_array = name_array.map { |str| str.capitalize }
+      name_string = name_strings_array.join(" ")
+      puts "  " + name_string + ': ' + supplies.join(", ")
+    end
+  end
 end
 
 def all_winter_holiday_supplies(holiday_hash)
